@@ -1,0 +1,70 @@
+﻿@model User_Role_Managment_System.Models.Signup_model
+
+@{
+    ViewData["Title"] = "Index";
+    var roles = TempData["RoleName"] as List<User_Role_Managment_System.Models.Role_Model>;
+
+}
+
+<h1>Index</h1>
+
+<h4>Signup_model</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Signup" asp-action="Signup" method="post" , new { enctype="multipart/form-data"}>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact" class="control-label"></label>
+                <input asp-for="Contact" class="form-control" />
+                <span asp-validation-for="Contact" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label  class="control-label" >Role</label>
+                <select asp-for="RoleID" class="form-control">
+                    <option value="">Select Role</option>
+                    @if (roles != null)
+                    {
+                        foreach (var role in roles)
+                        {
+                            <option value="@role.RoleID">@role.RoleName</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="RoleID" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Signup</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Login">Alreay Have a Account Login Here</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

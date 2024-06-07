@@ -1,0 +1,67 @@
+﻿@model List<User_Role_Managment_System.Models.User_Model>
+
+@{
+    ViewData["Title"] = "Report";
+}
+
+<h1>Report List</h1>
+
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ProfiePic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().User_FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().User_Lastname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Usermail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().UserAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().User_contact)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="data:image;base64,@Convert.ToBase64String(item.ProfiePic)" alt="User Image" style="border-radius: 50%; width: 60px; height: 60px;" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User_FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User_Lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usermail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User_contact)
+                </td>
+                <td>
+                    <button class="btn btn-outline-success" onclick="location.href='@Url.Action("Edit", "Users", new { id = item.user_Id })'">Edit</button>
+                    <button class="btn btn-outline-danger" onclick="location.href='@Url.Action("Delete", "Users", new { id = item.user_Id })'">Delete</button>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<p>
+    <a asp-action="Index">Create New</a>
+</p>

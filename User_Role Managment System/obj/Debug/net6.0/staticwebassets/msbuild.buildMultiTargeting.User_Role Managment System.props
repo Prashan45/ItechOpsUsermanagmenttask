@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\User_Role Managment System.props" />
+</Project>
